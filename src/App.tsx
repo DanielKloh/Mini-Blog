@@ -6,26 +6,48 @@ import Navbar from './components/navbar/Navbar'
 import Footer from './components/footer/Footer'
 import Login from './pages/login/Login'
 import Register from './pages/Register/Register'
+import { AuthProvider } from './context/AuthContet'
+import { useEffect, useState } from 'react'
+import { useAuthentication } from './hooks/useAuthentication'
+import { onAuthStateChanged } from 'firebase/auth'
 
 function App() {
 
+  const [user, setUser] = useState(undefined);
+  const {auth} = useAuthentication();
+
+  const loadingUser = user === undefined;
+
+  useEffect(()=>{
+    onAuthStateChanged(auth, () => {
+      setUser(user)
+    });
+  },[auth])
+
+
+  if(loadingUser){
+    <p>carregando...</p>
+  }
+
   return (
     <div>
-      <BrowserRouter>
+      <AuthProvider value={user}>
+        <BrowserRouter>
 
-      <Navbar/>
+          <Navbar/>
 
-      <div className='container'>
-        <Routes>
-          <Route path='/' element={<Home/>}/>
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/register' element={<Register/>}/>
-          <Route path='/about' element={<About/>}/>
-        </Routes>
-      </div>
-      </BrowserRouter>
-
-      <Footer/>
+          <div className='container'>
+            <Routes>
+              <Route path='/' element={<Home/>}/>
+              <Route path='/login' element={<Login/>}/>
+              <Route path='/register' element={<Register/>}/>
+              <Route path='/about' element={<About/>}/>
+            </Routes>
+          </div>
+          
+          <Footer/>
+        </BrowserRouter>
+      </AuthProvider>
     </div>
   )
 }
