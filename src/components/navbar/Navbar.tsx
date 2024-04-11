@@ -1,7 +1,13 @@
 import { NavLink } from "react-router-dom";
 import styles from "./Navbar.module.css";
+import { useAuthValue } from "../../context/AuthContet";
+import { useAuthentication } from "../../hooks/useAuthentication";
 
 const Navbar = () => {
+
+    const user = useAuthValue();
+
+    const { logout } = useAuthentication();
 
     return(
         
@@ -12,15 +18,36 @@ const Navbar = () => {
                 <li>
                     <NavLink to="/"className={({ isActive }) => (isActive ? styles.active : "")} >Home</NavLink>
                 </li>
-                <li>
-                    <NavLink to="/login" className={({ isActive }) => (isActive ? styles.active : "")}>Login</NavLink>  
-                </li>
-                <li>
-                    <NavLink to="/register" className={({ isActive }) => (isActive ? styles.active : "")}>Register</NavLink>  
-                </li>
+                {!user && (
+                    <>
+                        <li>
+                            <NavLink to="/login" className={({ isActive }) => (isActive ? styles.active : "")}>Login</NavLink>  
+                        </li>
+                        <li>
+                            <NavLink to="/register" className={({ isActive }) => (isActive ? styles.active : "")}>Register</NavLink>  
+                        </li>
+                    </>
+                )}
+
+                {user && (
+                    <>
+                        <li>
+                            <NavLink to="/post/create" className={({ isActive }) => (isActive ? styles.active : "")}>Create</NavLink>  
+                        </li>
+                        <li>
+                            <NavLink to="/dashboard" className={({ isActive }) => (isActive ? styles.active : "")}>Dashboard</NavLink>  
+                        </li>
+                    </>
+                )}
                 <li>
                     <NavLink to="/about" className={({ isActive }) => (isActive ? styles.active : "")}>About</NavLink>  
                 </li>
+
+                {user && (
+                    <li>
+                        <button onClick={logout}>Sair</button>  
+                    </li>
+                )}
             </ul>
         </nav>
         

@@ -1,15 +1,17 @@
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
 import './App.css'
-import Home from './pages/home/Home'
-import About from './pages/about/About'
+import Home from './pages/Home/Home'
+import About from './pages/About/About'
 import Navbar from './components/navbar/Navbar'
 import Footer from './components/footer/Footer'
-import Login from './pages/login/Login'
+import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import { AuthProvider } from './context/AuthContet'
 import { useEffect, useState } from 'react'
 import { useAuthentication } from './hooks/useAuthentication'
 import { onAuthStateChanged } from 'firebase/auth'
+import CreatePost from './pages/CreatePost/CreatePost'
+import Dashboard from './pages/Dashboard/Dashboard'
 
 function App() {
 
@@ -18,11 +20,11 @@ function App() {
 
   const loadingUser = user === undefined;
 
-  useEffect(()=>{
-    onAuthStateChanged(auth, () => {
-      setUser(user)
+  useEffect(() => {
+    onAuthStateChanged(auth, (user:any) => {
+      setUser(user);
     });
-  },[auth])
+  }, [auth]);
 
 
   if(loadingUser){
@@ -39,9 +41,12 @@ function App() {
           <div className='container'>
             <Routes>
               <Route path='/' element={<Home/>}/>
-              <Route path='/login' element={<Login/>}/>
-              <Route path='/register' element={<Register/>}/>
+              <Route path='/login' element={!user ?<Login/>: <Navigate to="/"/> }/>
+              <Route path='/register' element={!user ? <Register/>: <Navigate to="/"/> }/>
               <Route path='/about' element={<About/>}/>
+              <Route path='/post/create' element={user ? <CreatePost/>: <Navigate to="/login"/> }/>
+              <Route path='/dashboard' element={user ? <Dashboard/>: <Navigate to="/login"/> }/>
+
             </Routes>
           </div>
           

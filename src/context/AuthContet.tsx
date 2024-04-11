@@ -1,6 +1,6 @@
 import { useContext, createContext } from "react";
 
-const AuthContext = createContext(null);
+const AuthContext = createContext("");
 
 export function AuthProvider({children,value}:any)  {
     return( <AuthContext.Provider value={value}>{children}</AuthContext.Provider>);
