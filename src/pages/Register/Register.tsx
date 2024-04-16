@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const Register = () => {
 
-    const [userName,setUserName] = useState(String);
+    const [displayName,setDisplayName] = useState(String);
     const [email,setEmail] = useState(String);
     const [password,setPassword] = useState(String);
     const [confirmPassword,setConfirmPassword] = useState(String);
@@ -33,12 +33,12 @@ const Register = () => {
         }
 
         const user = {
-            userName,
+            displayName,
             email,
             password
         }
 
-        const res = await createUser(user);
+        await createUser(user);
 
     }
 
@@ -53,7 +53,7 @@ const Register = () => {
 
         <label>
             Nome:
-            <input type="text" name="name" value={userName} onChange={(e:any) => setUserName(e.target.value)} placeholder="Nome de Usuário" required/>
+            <input type="text" name="name" value={displayName} onChange={(e:any) => setDisplayName(e.target.value)} placeholder="Nome de Usuário" required/>
         </label>
         <label>
             Email:

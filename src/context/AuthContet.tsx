@@ -1,6 +1,12 @@
 import { useContext, createContext } from "react";
 
-const AuthContext = createContext("");
+interface User{
+    uid:String,
+    displayName:String,
+}
+
+
+const AuthContext = createContext<User | any>(undefined)
 
 export function AuthProvider({children,value}:any)  {
     return( <AuthContext.Provider value={value}>{children}</AuthContext.Provider>);

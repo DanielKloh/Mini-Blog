@@ -2,21 +2,37 @@ import styles from "./CreatePost.module.css"
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuthValue } from "../../context/AuthContet";
+import { useInsertDocuments } from "../../hooks/useInsertDocuments";
 
 const CreatePost = () => {
 
     const [title, setTitle] = useState(String);
     const [image, setImage] = useState(String);
     const [body, setBody] = useState(String);
-    const [tags, setTags] = useState(Array);
+    const [tags, setTags] = useState(String);
     const [formError, setFromError] = useState(String);
 
+
+  const user = useAuthValue();
+console.log(user)
+  const {insertDocument, response} = useInsertDocuments("posts"); 
 
     const handleSubmit = (e:any) => {
 
         e.preventDefault();
-    }
+        setFromError("");
 
+        insertDocument({
+          title,
+          image,
+          body,
+          tags,
+          uid: user.uid,
+          createdBy: user.email,
+        });
+
+        console.log("foi");
+}
     return (
         <div className={styles.create_post}>
           <h2>Criar post</h2>
@@ -62,10 +78,10 @@ const CreatePost = () => {
                 required
                 placeholder="Insira as tags separadas por vírgula"
                 onChange={(e:any) => setTags(e.target.value)}
-                // value={tags}
+                value={tags}
               />
             </label>
-            {/* {!response.loading && <button className="btn">Criar post!</button>}
+            {!response.loading && <button className="btn">Criar post!</button>}
             {response.loading && (
               <button className="btn" disabled>
                 Aguarde.. .
@@ -73,7 +89,7 @@ const CreatePost = () => {
             )}
             {(response.error || formError) && (
               <p className="error">{response.error || formError}</p>
-            )} */}
+            )}
           </form>
         </div>
       );
