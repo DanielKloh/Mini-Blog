@@ -1,5 +1,5 @@
 import styles from "./CreatePost.module.css"
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuthValue } from "../../context/AuthContet";
 import { useInsertDocuments } from "../../hooks/useInsertDocuments";
@@ -14,6 +14,7 @@ const CreatePost = () => {
 
 
   const user = useAuthValue();
+  const navigate = useNavigate(); 
 console.log(user)
   const {insertDocument, response} = useInsertDocuments("posts"); 
 
@@ -22,15 +23,28 @@ console.log(user)
         e.preventDefault();
         setFromError("");
 
+        try {
+          new URL(image);
+        } catch (error) {
+        setFromError("A imagem precisa ser uma url!");
+        }
+
+        const tagsArray = tags.split(",").map((tag:any) => tag.trim().toLowerCase());
+
+        if(!title || !image || !body || !tags){
+          setFromError("Preencha todos os campos!");
+        }
+
         insertDocument({
           title,
           image,
           body,
-          tags,
+          tagsArray,
           uid: user.uid,
           createdBy: user.email,
         });
 
+        navigate("/");
         console.log("foi");
 }
     return (

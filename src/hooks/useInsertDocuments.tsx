@@ -8,7 +8,7 @@ interface Document {
   title : String,
   image : String,
   body : String,
-  tags : String,
+  tagsArray : Array<string>,
   uid : String,
   createdBy : String,
 }
