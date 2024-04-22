@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./Home.module.css"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useFetchDocuments } from "../../hooks/useFetchDocuments";
 import { PostDetail } from "../../components/postDetails/PostDetails";
 
@@ -9,9 +9,14 @@ const Home = () => {
     const [query,setQuery] = useState(String);
     // const [post,setPost] = useState(Array);
     const { document: post, loading } = useFetchDocuments("posts");
+    const navigate = useNavigate();
 
 const handleSubmit = (e:any)=>{
-    e.proventDefault();
+    e.preventDefault();
+
+    if(query){
+      return navigate(`/search?q=${query}`);
+    }
 
 }
 
@@ -24,6 +29,7 @@ const handleSubmit = (e:any)=>{
           type="text"
           placeholder="Ou busque por tags..."
           onChange={(e) => setQuery(e.target.value)}
+          name="search"
         />
         <button className="btn btn-dark">Pesquisar</button>
       </form>
