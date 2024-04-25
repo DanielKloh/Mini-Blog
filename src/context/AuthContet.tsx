@@ -5,8 +5,10 @@ interface User{
     displayName:String,
 }
 
-
-const AuthContext = createContext<User | any>(undefined)
+const AuthContext = createContext<User>({
+    uid: "",
+    displayName: ""
+})
 
 export function AuthProvider({children,value}:any)  {
     return( <AuthContext.Provider value={value}>{children}</AuthContext.Provider>);
