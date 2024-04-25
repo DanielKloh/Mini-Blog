@@ -1,9 +1,9 @@
 import styles from "./EditPost.module.css"
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuthValue } from "../../context/AuthContet";
-import { useInsertDocuments } from "../../hooks/useInsertDocuments";
 import { useFetchDocument } from "../../hooks/useFetchDocument";
+import { useUpdateDocument } from "../../hooks/useUpdateDocument";
 
 const EditPost = () => {
 
@@ -32,9 +32,10 @@ const EditPost = () => {
     },[post])
 
   const user = useAuthValue();
+  
   const navigate = useNavigate(); 
 
-  const {insertDocument, response} = useInsertDocuments("posts"); 
+  const {updateDocument, response} = useUpdateDocument("posts"); 
 
     const handleSubmit = (e:any) => {
 
@@ -53,17 +54,17 @@ const EditPost = () => {
           setFromError("Preencha todos os campos!");
         }
 
-        insertDocument({
-          title,
+        const data={
+            title,
           image,
           body,
           tagsArray,
           uid: user.uid,
           createdBy: user.email,
-        });
+        }
+        updateDocument(id,data);
 
-        navigate("/");
-        console.log("foi");
+        navigate("/dashboard");
 }
     return (
         <div className={styles.edit_post}>
@@ -117,7 +118,7 @@ const EditPost = () => {
                 value={tags}
               />
             </label>
-            {!response.loading && <button className="btn">Criar post!</button>}
+            {!response.loading && <button className="btn">Editar</button>}
             {response.loading && (
               <button className="btn" disabled>
                 Aguarde.. .
