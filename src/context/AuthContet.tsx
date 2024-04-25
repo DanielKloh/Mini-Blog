@@ -3,11 +3,13 @@ import { useContext, createContext } from "react";
 interface User{
     uid:String,
     displayName:String,
+    email:String,
 }
 
 const AuthContext = createContext<User>({
     uid: "",
-    displayName: ""
+    displayName: "",
+    email: "",
 })
 
 export function AuthProvider({children,value}:any)  {
