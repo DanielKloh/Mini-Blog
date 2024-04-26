@@ -1,8 +1,6 @@
-import { getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,updateProfile,signOut, AuthError } from "firebase/auth";
+import { getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,updateProfile,signOut } from "firebase/auth";
 import { useState, useEffect } from "react";
 import {db} from "../firebase/config";
-import { FirebaseError } from "firebase/app";
-import { FirestoreError } from "firebase/firestore";
 
 
 export const useAuthentication = () => {

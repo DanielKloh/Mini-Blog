@@ -14,7 +14,6 @@ import CreatePost from './pages/CreatePost/CreatePost'
 import Dashboard from './pages/Dashboard/Dashboard'
 import Search  from './pages/Search/Search'
 import EditPost from './pages/EditPost/EditPost'
-import { PostDetail } from './components/postDetails/PostDetails'
 import Post from './pages/Post/Post'
 
 function App() {

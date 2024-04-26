@@ -3,15 +3,6 @@ import { db } from "../firebase/config";
 import { updateDoc, doc } from "firebase/firestore";
 
 
-interface Document {
-  // Defina a estrutura do documento aqui
-  title : String,
-  image : String,
-  body : String,
-  tagsArray : Array<string>,
-  uid : String,
-  createdBy : String,
-}
 
 const initialState ={
     loading:null,
