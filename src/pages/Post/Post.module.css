@@ -18,3 +18,29 @@
   .tags span {
     font-weight: bold;
   }
+
+  @media screen and (max-width:600px){
+    .post_container img{
+      width: 65%;
+
+    }
+    .post_container h3 {    
+        
+      width: 80%;
+    }
+
+    .post_container p {
+      max-width: 80%;
+      margin-left: 35px;
+
+    }
+    .post_container h1 {
+      max-width: 80%;
+    }
+    .post_container .tags {
+      width: 80%;
+      text-align: left;
+      display:block;
+      margin-left: 35px;
+    }
+  }

@@ -1,8 +1,18 @@
 .footer {
-    height: 250px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #edf3f6;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+footer{
+  background-color: #edf3f6;
+}
+
+@media screen and (max-width: 740px) {
+  .footer{
+    padding: 35px;
+    
   }
+}

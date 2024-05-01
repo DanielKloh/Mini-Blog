@@ -29,3 +29,12 @@
   .noposts a {
     padding: 10px 25px;
   }
+
+  @media screen and ( max-width: 600px){
+    h1{
+      margin: auto;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      max-width:85%;
+    }
+  }
