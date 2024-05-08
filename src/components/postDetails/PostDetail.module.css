@@ -9,10 +9,11 @@
 .post_detail h2 {
   margin-bottom: 0.4em;
 }
-
+ 
 .post_detail .tags {
   margin-bottom: 1.2em;
-  display: flex;
+  display: block;
+
 }
 
 .tags p {
@@ -52,28 +53,15 @@
 }
 
 @media screen and (max-width: 740px) {
+
+  .post_detail {
+    display: grid;
+    justify-items: center;
+  }
+
   .post_detail img {
     max-width: 70%;
-    margin-left: 35px;
   }
+ 
 
-  .post_detail h2 {
-    margin-left: 35px;
-  }
-
-  .createdby {
-    margin-left: 35px;
-  }
-
-  .tags span {
-    margin-left: 35px;
-  }
-
-  .btn_post_detail {
-    margin-left: 35px !important;
-  }
-
-  .tags {
-    display: block !important;
-  }
 }
