@@ -15,7 +15,6 @@ const CreatePost = () => {
 
   const user = useAuthValue();
   const navigate = useNavigate(); 
-console.log(user)
   const {insertDocument, response} = useInsertDocuments("posts"); 
 
     const handleSubmit = (e:any) => {
@@ -45,7 +44,6 @@ console.log(user)
         });
 
         navigate("/");
-        console.log("foi");
 }
     return (
         <div className={styles.create_post}>

@@ -17,7 +17,6 @@ const EditPost = () => {
     const [tags, setTags] = useState(String);
     const [formError, setFromError] = useState(String);
 
-    console.log(post);
 
     useEffect(() => {
         if(post){
