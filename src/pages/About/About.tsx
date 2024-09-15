@@ -7,7 +7,7 @@ const About = () => {
         <div className={style.about}>
             <h2>Sobre o Mini <span>Blog</span></h2>
             <p>O Mini Blog é um projeto feito em React usando o Firebase no back-end </p>
-            <Link to="/post/create" className="btn">Criar Projeto</Link>
+            <Link to="/post/create" className="btn">Criar Post</Link>
         </div>
     )
 }

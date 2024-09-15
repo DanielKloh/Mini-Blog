@@ -15,6 +15,9 @@ import Dashboard from './pages/Dashboard/Dashboard'
 import Search  from './pages/Search/Search'
 import EditPost from './pages/EditPost/EditPost'
 import Post from './pages/Post/Post'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Importa o CSS do react-toastify
+
 
 function App() {
 
@@ -55,7 +58,7 @@ function App() {
 
             </Routes>
           </div>
-          
+          <ToastContainer /> {/* Componente responsável por exibir os toasts */}
           <Footer/>
         </BrowserRouter>
       </AuthProvider>

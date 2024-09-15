@@ -74,6 +74,9 @@ import { useDeleteDocument } from "../../hooks/useDeleteDocument";
 import Modal from "../Modal/Modal";
 import { useState } from 'react'
 
+import React from 'react';
+import { toast } from 'react-toastify';
+
 
 const Dashboard = () => {
 
@@ -98,8 +101,6 @@ const Dashboard = () => {
       setSelectedId(""); // Limpa o id quando a modal é fechada
     };
   
-  
-
     return(
         <div className={style.dashboard}>
         <h2>Dashboard</h2>
@@ -119,10 +120,9 @@ const Dashboard = () => {
         </div>))}
       
       {/* Componente Modal */}
-      <Modal isOpen={isModalOpen} closeModal={closeModal} title="Minha Modal" id={selectedId} >
+      <Modal isOpen={isModalOpen} closeModal={closeModal} title="Minha Modal" id={selectedId} typeToast="deletePost">
         <p>Você tem certeza de que desja deletar o post <b>PostName</b> ?.</p>
       </Modal>
-
 
         </div>
     )

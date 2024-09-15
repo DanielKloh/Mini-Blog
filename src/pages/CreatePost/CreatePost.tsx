@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuthValue } from "../../context/AuthContet";
 import { useInsertDocuments } from "../../hooks/useInsertDocuments";
-
+import { toast } from 'react-toastify'; 
 const CreatePost = () => {
 
     const [title, setTitle] = useState(String);
@@ -44,6 +44,8 @@ const CreatePost = () => {
         });
 
         navigate("/");
+
+        toast.success("Post criado com sucesso!")
 }
     return (
         <div className={styles.create_post}>

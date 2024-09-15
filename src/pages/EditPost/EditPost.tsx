@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useAuthValue } from "../../context/AuthContet";
 import { useFetchDocument } from "../../hooks/useFetchDocument";
 import { useUpdateDocument } from "../../hooks/useUpdateDocument";
+import { toast } from 'react-toastify'; 
 
 const EditPost = () => {
 
@@ -64,6 +65,8 @@ const EditPost = () => {
         updateDocument(id,data);
 
         navigate("/dashboard");
+
+        toast.success("Post editado com sucesso!")
 }
     return (
         <div className={styles.edit_post}>

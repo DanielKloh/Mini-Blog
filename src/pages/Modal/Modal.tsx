@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDeleteDocument } from "../../hooks/useDeleteDocument";
 import './Modal.css';
+import { toast } from 'react-toastify'; 
 
 // Definindo a interface para as props da Modal
 interface ModalProps {
@@ -8,15 +9,16 @@ interface ModalProps {
   closeModal: () => void;
   title: string;
   children: React.ReactNode;
-  id:string
+  id: string;
+  typeToast: string;
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, closeModal, title, children, id }) => {
+const Modal: React.FC<ModalProps> = ({ isOpen, closeModal, title, children, id, typeToast }) => {
 
     const { deleteDocument } = useDeleteDocument("posts");
 
+    
     if (!isOpen || !id) return null;
-
 
   return (
     <div className="modal-backdrop">
@@ -28,7 +30,14 @@ const Modal: React.FC<ModalProps> = ({ isOpen, closeModal, title, children, id }
         <div className='containerBtnModal'>
 
         <button onClick={closeModal} className="btn btn-outline" >Cancelar</button>
-        <button onClick={() => {deleteDocument(id); closeModal()}} className="btn btn-outline btn-danger"> Deleta </button>
+        <button onClick={() => {deleteDocument(id); closeModal();
+
+            switch(typeToast){
+                case "deletePost":
+                    toast.success("Post deletado com sucesso!")
+            }
+
+        }} className="btn btn-outline btn-danger"> Deleta </button>
       </div> 
       </div>
 
