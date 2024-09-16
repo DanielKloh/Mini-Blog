@@ -70,12 +70,8 @@ import { Link } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContet";
 import style from "./Dashboard.module.css"
 import { useFetchDocuments } from "../../hooks/useFetchDocuments";
-import { useDeleteDocument } from "../../hooks/useDeleteDocument";
 import Modal from "../Modal/Modal";
 import { useState } from 'react'
-
-import React from 'react';
-import { toast } from 'react-toastify';
 
 
 const Dashboard = () => {
@@ -83,8 +79,6 @@ const Dashboard = () => {
     const {uid} = useAuthValue();
 
     const { document: posts } = useFetchDocuments("posts", null, uid);
-
-    const { deleteDocument } = useDeleteDocument("posts");
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedId, setSelectedId] = useState<string >(String);
