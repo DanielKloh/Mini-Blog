@@ -38,9 +38,9 @@ export const useFetchDocuments = (docCollection:string, search:any = null, uid:a
                             id:doc.id, ...doc.data(),
                         }))
                     );
+                    setLoading(false);
                 });
 
-                setLoading(false);
 
             } catch (error:any) {
                 console.log(error);

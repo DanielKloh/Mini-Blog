@@ -115,7 +115,7 @@ const Dashboard = () => {
       
       {/* Componente Modal */}
       <Modal isOpen={isModalOpen} closeModal={closeModal} title="Minha Modal" id={selectedId} typeToast="deletePost">
-        <p>Você tem certeza de que desja deletar o post <b>PostName</b> ?.</p>
+        <p>Você tem certeza de que desja deletar este post ?</p>
       </Modal>
 
         </div>

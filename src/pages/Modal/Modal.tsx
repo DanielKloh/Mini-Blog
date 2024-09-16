@@ -37,7 +37,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, closeModal, title, children, id, 
                     toast.success("Post deletado com sucesso!")
             }
 
-        }} className="btn btn-outline btn-danger"> Deleta </button>
+        }} className="btn btn-outline btn-danger"> Deletar </button>
       </div> 
       </div>
 
